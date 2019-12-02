@@ -1,0 +1,705 @@
+
+$slab_color: #9c7645;
+$wall_color: #c79d5a;
+
+@mixin sizing($color_shade, $width, $height, $psuedo:true, $bg:true) {
+  width: #{$width}rem;
+  height: #{$height}rem;
+  @if($bg) {
+    @if($height==12.5){
+      background: darken($wall_color, $color_shade);
+    } @else {
+      background: darken($slab_color, $color_shade);
+    }
+  }
+  @if($psuedo) {
+    content: '';
+    position: absolute;
+  }
+}
+
+@mixin door_props($border-radius, $top, $left) {
+  background: linear-gradient(to top, #dac29a, #dac29a);
+  border-radius: $border-radius;
+  top: $top;
+  left: $left;
+}
+
+@mixin front_rear_roof($left, $right, $bottom, $bottom_col) {
+  border-left: #{$left}px solid transparent;
+  border-right: #{$right}px solid transparent;
+  border-bottom: #{$bottom}px solid $bottom_col;
+}
+
+@mixin sides_roof($bg_color1, $bg_color2, $right, $bottom) {
+  background-image: repeating-linear-gradient(to left, $bg_color1, $bg_color2, 10%, $bg_color2, $bg_color1 10%);
+  border-right: 5px solid $right;
+  border-bottom: 3px solid $bottom;
+}
+
+@mixin veranda_prop($width, $height, $bg1, $bg2, $linear){
+  width: $width#{rem};
+  height: $height#{rem};
+  @if($linear){
+    background: linear-gradient(to bottom, $bg1, $bg2);
+  } @else {
+    background-color: $bg1;
+  }
+}
+
+body {
+  height: 100vh;
+  background: #efe8dd;
+  overflow-x: hidden;
+  animation: background 20s 3s infinite;
+}
+
+@keyframes background {
+  0%, 100% {
+    background: #efe8dd;
+  }
+  25%, 50%{
+    background: #1d232a;
+  }
+}
+
+article.scene {
+  transform: translate(0, 20px);
+  perspective: 2000px;
+}
+
+.house {
+  width: 460px;
+  margin: 0 auto;
+  position: relative;
+  transform-style: preserve-3d;
+  transform: rotateY(-45deg);
+
+  div {
+    position: absolute;
+    transform-style: preserve-3d;
+  }
+}
+
+.deck {
+  .covering {
+    width: 41rem;
+    height: 35rem;
+    background-color: #7a5d37;
+    transform: translate3D(8.5rem, 2rem, 21.3rem) rotateX(-90deg);
+    background:
+    linear-gradient(#7a5d37,#7a5d37) calc(100% - 124px) no-repeat,
+    linear-gradient(#7a5d37,#7a5d37)0 188px/100% no-repeat;
+  }
+
+  *:not(.covering),
+  *::before,
+  *::after {
+    border-right: 3px solid #78552c;
+    border-top: 2px solid #b5854a;
+  }
+  
+  .left {
+    @include sizing(5, 33.75, 2.06, false, true);
+    transform: translate3D(7.4rem, 19.6rem, 38.3rem);
+  }
+
+  .right {
+    @include sizing(22, 61.3, 2.9, false, true);
+    transform: translate3D(-38.4rem, 29.1rem, -38.4rem);
+  }
+
+  .back {
+    @include sizing(22, 53, 2.9, false, true);
+    transform: translate3D(-66rem, 29.3rem, -12.8rem) rotateY(90deg);
+  }
+
+  .front {
+    @include sizing(0, 25.3, 2.2, false);
+    transform: translate3d(32.1rem, 21.2rem, 9rem) rotateY(90deg);
+
+    &::before {
+      @include sizing(5, 11, 3, true);
+      transform: translate3D(17.2rem, 7.1rem, -25.4rem) rotateY(90deg);
+    }
+
+    &::after {
+      @include sizing(0, 14.1, 2.45, true);
+      transform: translate3d(-6.3rem, 2.35rem, -16.2rem);
+    }
+  }
+
+  transform: translateY(0px);
+  animation: deck 1s;
+}
+
+@keyframes deck {
+  0% {
+    transform: translateY(-1000px);
+  }
+}
+
+.walls {
+  .left {
+    @include sizing(3, 22, 12.5, false, true);
+    transform: translate3d(18.4rem, 6.2rem, 38.3rem);
+  }
+
+  .right {
+    @include sizing(20, 22.2, 12.5, false, true);
+    transform: translate3d(18.1rem, 6.2rem, 9.4rem);
+  }
+
+  .back {
+    @include sizing(15, 29.2, 12.5, false, true);
+    transform: translate3d(2.2rem, 6.3rem, 22.7rem) rotateY(90deg);
+  }
+
+  .front {
+    @include sizing(0, 28.75, 12.5, false, true);
+    transform: translate3d(26rem, 6.2rem, 23.9rem) rotateY(90deg);
+  }
+
+  animation: walls 1s 1s;
+  animation-fill-mode: backwards;
+}
+
+@keyframes walls {
+  0% {
+    transform: translateY(-1000px);
+  }
+}
+
+.windows {
+  width: 100%;
+  height: 100%;
+
+  .rim {
+    top: 30px;
+    @include sizing(0, 4.3, 3.75, false, false);
+    $border: ("left": 9, "right": 9, "top": 7, "bottom": 7);
+    @each $prop, $size in $border {
+      border-#{$prop}: #{$size}px solid #dac29a;
+    }
+   
+    $psuedo: ("::before", "::after");
+    @each $element in $psuedo {
+      &#{$element} {
+        background: linear-gradient(to left, #dac29a, #bda886);
+        @if ($element == "::before"){
+          left: 45%;
+          @include sizing(0, 0.62, 3.75, true, false);
+        } @else{
+          top: 45%;
+          @include sizing(0, 4.3, 0.45, true, false);
+        }
+      }
+    }
+  }
+
+  .first-rim {
+    left: 40px;
+  }
+  
+  .second-left-rim,
+  .second-right-rim {
+    left: 215px;
+  }
+
+  .second-front-rim,
+  .second-back-rim {
+    left: 330px;
+  }
+
+  $selector: ("louvres", "bar");
+  @each $class in $selector {
+    .#{$class}{
+      background: linear-gradient(to left, #dac29a, #b5a181);
+      border-top: 2px solid #7a5d37;
+      @if ($class == "louvres"){
+        @include sizing(0, 4.3, 3.75, false, false);
+        z-index: -1;
+        opacity: 0.7;
+      } @else {
+        @include sizing(0, 6, 0.5, false, false);
+        bottom: -15px;
+        right: -15px;
+        border-radius: 20px;
+      }
+    }
+  }
+}
+
+.doors {
+  width: 100%;
+  height: 100%;
+
+  $selector: ("door-open", "door-close");
+  @each $class in $selector {
+    .#{$class} {
+      @include sizing(0, 5.5, 7.5, false, false);
+      bottom: 0%;
+      left: 40%;
+
+      @if ($class=="door-open") {
+        border-right: 3px solid #a58152;
+        background: linear-gradient(12deg, #7a5d37 40%, #a07c43 0 70%);
+      } @else {
+        $borders: ("left", "right", "top");
+        @each $border in $borders {
+          #{border}-#{$border}: 8px solid #dac29a;
+        }
+        background: #fff;
+        animation: door-open 20s 8s infinite;
+      }
+    }
+  }
+
+  .door-knob {
+    @include sizing(0, 0.5, 0.5, false, false);
+    @include door_props(50%, 50%, 5px);
+    border-left: 2px solid #a28658;
+  }
+
+  .door-bars {
+    @include sizing(0, 7, 0.5, false, false);
+    @include door_props(20px, -15px, -12px);
+    border-bottom: 2px solid #7a5d37;
+  }
+}
+
+@keyframes door-open {
+  0%{
+    transform: translate3d(0px, 0px, 20px) rotateY(20deg);
+  }
+
+  8%, 50%{
+    transform: translate3d(0px, 0px, 53px) rotateY(53deg);
+  }
+
+  35%, 70%, 100%{
+    transform: translate3d(0px, 0px, 0px) rotateY(0deg);
+  }
+}
+
+.roof {
+  
+  .front {
+    @include front_rear_roof(220, 246, 110, #c79d5a);
+    transform: translate3d(25.6rem, -0.6rem, 23.7rem) rotateY(90deg);
+  }
+
+  .back {
+    @include front_rear_roof(203, 203, 98, #9f7636);
+    transform: translate3d(15.85rem, -0.6rem, 31.7rem) rotateY(90deg);
+  }
+
+  .left {
+    @include sizing(0, 24.25, 8.4, false, false);
+    @include sides_roof(#795f35, #a68349, #86693b, #927340);
+    transform: translate3d(29.5rem, -1.8rem, 42rem) rotateX(45deg) skewX(-35deg);
+  }
+  
+  .right {
+    @include sizing(0, 41.25, 12.5, false, false);
+    @include sides_roof(#8e734b, #65502d, #b38f55, #927340);
+    transform: translate3d(-12.3rem, -3.1rem, -0.7rem) rotateX(131deg) skewX(-35deg);
+  }
+
+  animation: roof 1s 1.5s;
+  animation-fill-mode: backwards;
+}
+
+@keyframes roof {
+  0% {
+    transform: translateY(-1000px);
+  }
+}
+
+.porch {
+
+  *:not(.front) {
+    background: linear-gradient(to top, #795f35, #b18c50);
+    border-right: 3px solid #9a7944;
+  }
+
+  .bottom {
+    @include sizing(0, 2.6, 11, false, false);
+    transform: translate3d(52rem, 0.4rem, 36rem) rotateX(90deg);
+    
+  }
+
+  .left {
+    @include sizing(0, 3, 6, false, false);
+    transform: translate3d(51.1rem, 1.6rem, 38rem) rotateX(63deg);
+  }
+
+  .right {
+    @include sizing(0, 3, 5.9, false, false);
+    transform: translate3d(51.3rem, 1.6rem, 32.8rem) rotateX(-63deg);
+  }
+  
+  .front {
+    @include front_rear_roof(70, 70, 36, #866a3c);
+    transform: translate3d(58rem, 2.7rem, 44.2rem) rotateY(90deg);
+  }
+  
+  [class*='bar'] {
+    height: 155px;
+    width: 10px;
+    border-radius: 0 0 5px 3px;
+    background: linear-gradient(to bottom, #795f35, #b18c50);
+    border-right: 3px solid #9a7944;
+  }
+
+  .first_bar {    
+    transform: translate3d(52rem, 6rem, 37rem);
+  }
+
+  .second_bar {
+    transform: translate3d(51.8rem, 6rem, 31.5rem);
+  }
+
+  animation: porch 1s 2s;
+  animation-fill-mode: backwards;
+}
+
+@keyframes porch {
+  0% {
+    transform: translateX(1000px);
+  }
+}
+
+.staircase {
+  [class*='vertical'],
+  [class*='vertical']::before,
+  [class*='vertical']::after {
+    background-color: #7a5d37;
+    border-right: 3px solid #78552c;
+    border-top: 2px solid #b5854a;
+  }
+
+  .vertical-step {
+      @include sizing(0, 5.62, 0.93, false, false);
+      transform: translate3D(46.8rem, 18.3rem, 33.3rem) rotateY(-4deg);
+
+    &::before {
+      @include sizing(0, 6.2, 0.93, true, false);
+      top: 24px;
+      left: -40px;
+    }
+
+    &::after {
+      @include sizing(0, 6.2, 0.93, true, false);
+      top: 48px;
+      left: -65px;
+    }
+  }
+
+  [class*='horizontal'],
+  [class*='horizontal']::before,
+  [class*='horizontal']::after {
+    background-color: #8a683d;
+    border-right: 4px solid #78552c;
+  }
+
+  .horizontal-step {
+    @include sizing(0, 5, 1.3, false, false);
+    width: 80px;
+    height: 21px;
+    transform: translate3D(47.8rem, 17.5rem, 33.3rem) rotateX(90deg) rotateY(2deg);
+
+    &::before {
+      @include sizing(0, 5, 1.3, true, false);
+      top: 63px;
+      left: 35px;
+    }
+
+    &::after {
+      @include sizing(0, 5, 1.3, true, false);
+      top: 116px;
+      left: 63px;
+    }
+  }
+  
+  .back-cover {
+    @include sizing(0, 6.25, 3.13, true, false);
+    transform: translate3D(40rem, 20.6rem, 25rem) rotateY(-5deg);
+  }
+  
+  .bottom-cover {
+    @include sizing(0, 6.25, 3.55, true, false);
+    transform: translate3D(39.2rem, 22.2rem, 27rem) rotateX(82deg) rotateY(1deg) skewX(-25deg);
+  }
+  
+  .side-cover {
+    @include sizing(15, 1.25, 2.56, false, true);
+    transform: translate3D(56.5rem, 16.68rem, 38rem) rotateY(90deg);
+
+    &::before {
+      @include sizing(15, 1.63, 1.71, true, true);
+      transform: translate3D(-1.6rem, 0.8rem, 0rem);
+    }
+
+    &::after {
+      @include sizing(15, 1.31, 0.85, true, true);
+      transform: translate3D(-2.9rem, 1.6rem, 0rem);
+    }
+  }
+  animation: stairs 1s 2.5s;
+  animation-fill-mode: backwards;
+}
+
+@keyframes stairs {
+  0% {
+    transform: translateY(1000px);
+  }
+}
+
+.veranda {
+
+  [class*='wedge'] {
+    border-radius: 6px 6px 0 0;
+    border-top: 1px solid #b5854a;
+  }
+  .wedges [class*='border-right'] {
+    border-right: 3px solid #8a683d;
+  }
+  .wedges [class*='border-left'] {
+    border-left: 3px solid #8a683d;
+  }
+
+  .wedge1 {
+    @include veranda_prop(0.6, 2, #7a5d37, #523e25, true);
+    transform: translate3D(57.8rem, 14rem, 46.3rem) rotateY(90deg);
+  }
+
+  .wedge2 {
+    @include veranda_prop(0.7, 2.3, #7a5d37, #523e25, true);
+    transform: translate3D(54rem, 13.3rem, 38rem) rotateY(90deg);
+  }
+
+  .wedge3 {
+    @include veranda_prop(0.8, 2.6, #8a683d, #b78549, true);
+    transform: translate3d(45.8rem, 15rem, 32rem) rotateY(90deg);
+  }
+
+  .wedge4 {
+    @include veranda_prop(1, 2.8, #8a683d, #b78549, true);
+    transform: translate3D(40rem, 16.5rem, 38.5rem);
+  }
+
+  .wedge5 {
+    @include veranda_prop(1.3, 2.8, #8a683d, #b78549, true);
+    transform: translate3D(10rem, 16.5rem, 38.5rem);
+  }
+
+  .wedge6 {
+    @include veranda_prop(1, 2.8, #7a5d37, #523e25, true);
+    transform: translate3D(10rem, 16.5rem, 5.5rem);
+  }
+  
+  .wedge7 {
+    @include veranda_prop(1, 3, #7a5d37, #523e25, true);
+    transform: translate3D(48rem, 16.3rem, 5.5rem);
+  }
+  
+  .wedge8 {
+    @include veranda_prop(0.7, 2.3, #8a683d, #b78549, true);
+    transform: translate3D(58.5rem, 13.3rem, 38rem) rotateY(90deg);
+  }
+  
+  .wedge9 {
+    @include veranda_prop(0.6, 1.7, #8a683d, #b78549, true);
+    transform: translate3D(61.8rem, 14.4rem, 46.5rem) rotateY(90deg);
+  }
+
+  .planks [class*='border-right'] {
+    border-top: 2px solid #b5854a;
+    border-right: 2px solid #78552c;
+  }
+
+  .planks [class*='border-left'] {
+    border-top: 2px solid #b5854a;
+    border-left: 3px solid #78552c;
+  }
+
+  .plank1 {
+    @include veranda_prop(4.7, 0.7, #795b36, 0, false);
+    transform: translate3D(55rem, 13.6rem, 43.7rem) rotateY(90deg) rotateZ(-19deg);
+  }
+
+  .plank2 {
+    @include veranda_prop(1.7, 0.7, #806139, 0, false);
+    transform: translate3D(53.5rem, 13.5rem, 39.2rem) rotateZ(-3deg);
+  }
+
+  .plank3 {
+    @include veranda_prop(8.8, 0.7, #8a683d, 0, false);
+    transform: translate3D(52rem, 12.7rem, 46.7rem) rotateY(90deg);
+  }
+
+  .plank4 {
+    @include veranda_prop(30, 0.9, #8a683d, 0, false);
+    transform: translate3D(12.7rem, 16.5rem, 40rem);
+  }
+
+  .plank5 {
+    @include veranda_prop(34, 1, #46341f, 0, false);
+    transform: translate3D(-11rem, 17.7rem, 18.7rem) rotateY(90deg);
+  }
+  
+  .plank6 {
+    @include veranda_prop(38, 0.9, #46341f, 0, false);
+    transform: translate3D(10rem, 17rem, 5rem);
+  }
+
+  .plank7 {
+    @include veranda_prop(17, 0.8, #8a683d, 0, false);
+    transform: translate3D(52rem, 13.2rem, 31.7rem) rotateY(90deg);
+  }
+  
+  .plank8 {
+    @include veranda_prop(4.5, 0.7, #8a683d, 0, false);
+    transform: translate3D(63rem, 12.5rem, 47.7rem) rotateY(90deg) rotateZ(-19deg);
+  } 
+  animation: veranda 1s 3s;
+  animation-fill-mode: backwards;
+}
+
+@keyframes veranda {
+  0% {
+    transform: translateY(-1000px);
+  }
+}
+
+.person {
+
+  .person-one figure, 
+  .person-two figure {
+    background-color: black;
+    display: block;
+    position: absolute;
+  }
+
+  .person-one .head, 
+  .person-two .head {
+    border-radius: 22px;
+    width: 20px;
+    height: 20px;
+    left: 3px;
+    top: 0;
+  }
+
+  .person-one .body, 
+  .person-two .body {
+    border-radius: 30px 30px 0 0;
+    height: 30px;
+    top: 21px;
+    width: 26px;
+  }
+
+  .person-one .body:before, 
+  .person-one .body:after, 
+  .person-two .body:before, 
+  .person-two .body:after {
+    content: "";
+    position: absolute;
+    background-color: black;
+    width: 9px;
+    height: 15px;
+    top: 30px;
+  }
+
+  .person-one .body:before, 
+  .person-two .body:before {
+    left: 3px;
+  }
+
+  .person-one .body:after, 
+  .person-two .body:after {
+    left: 14px;
+  }
+
+  .person-one {
+    transform: translate3d(935px, 179px, 780px) rotateY(0deg);
+    animation: move-person-one 20s 3s infinite;
+   
+  }
+
+  .person-two {
+    transform: translate3d(935px, 179px, 790px) rotateY(0deg) scale(0);
+    animation: move-person-two 15s 5.5s infinite; 
+   
+  }
+}
+
+@keyframes move-person-one {
+  0%, 10%, 90% {
+    transform: translate3d(935px, 179px, 780px) rotateY(0deg);
+  }
+
+  20%, 85% {
+    transform: translate3d(870px, 169px, 610px) rotateY(0deg);
+  }
+
+  30%, 80% {
+    transform: translate3d(870px, 175px, 610px) rotateY(86deg);
+  }
+
+  40%, 45%, 70% {
+    transform: translate3d(635px, 215px, 415px) rotateY(86deg);
+  }
+
+  55%, 50% {
+    transform: translate3d(620px, 215px, 405px) rotateY(86deg);
+  }
+
+  91% {
+    transform: translate3d(945px, 179px, 810px) rotateY(0deg);
+  }
+
+  100% {
+    transform: translate3d(945px, 179px, 990px) rotateY(0deg);
+  }
+}
+
+@keyframes move-person-two {
+  0%, 10%, 80% {
+    transform: translate3d(935px, 179px, 790px) rotateY(0deg) scale(1);
+  }
+  20%, 75% {
+    transform: translate3d(870px, 169px, 610px) rotateY(0deg);
+  }
+
+  30%, 70% {
+    transform: translate3d(860px, 169px, 380px) rotateY(0deg);
+  }
+
+  35%, 65% {
+    transform: translate3d(860px, 169px, 380px) rotateY(89deg);
+  }
+  
+  40%, 60% {
+    transform: translate3d(795px, 169px, 380px) rotateY(89deg); 
+    opacity: 1;   
+  }
+
+  41%, 50% {
+    opacity: 0;
+  }
+
+  81% {
+    transform: translate3d(965px, 179px, 820px) rotateY(0deg);
+    opacity: 1;
+  }
+
+  82% {
+    transform: translate3d(995px, 189px, 855px) rotateY(89deg);
+  }
+
+  100% {
+    transform: translate3d(1200px, 179px, 860px) rotateY(89deg);
+  }
+}
+
