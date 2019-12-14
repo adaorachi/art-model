@@ -81,7 +81,7 @@ article.scene {
 
 .deck .right {
   width: 61.3rem;
-  height: 2.9rem;
+  height: 3rem;
   background: #4e3b23;
   -webkit-transform: translate3D(-38.4rem, 29.1rem, -38.4rem);
           transform: translate3D(-38.4rem, 29.1rem, -38.4rem);
@@ -89,7 +89,7 @@ article.scene {
 
 .deck .back {
   width: 53rem;
-  height: 2.9rem;
+  height: 3rem;
   background: #4e3b23;
   -webkit-transform: translate3D(-66rem, 29.3rem, -12.8rem) rotateY(90deg);
           transform: translate3D(-66rem, 29.3rem, -12.8rem) rotateY(90deg);
@@ -104,7 +104,7 @@ article.scene {
 }
 
 .deck .front::before {
-  width: 11rem;
+  width: 11.1rem;
   height: 3rem;
   background: #8a693d;
   content: '';
@@ -431,11 +431,11 @@ article.scene {
 }
 
 .porch .front {
-  border-left: 70px solid transparent;
-  border-right: 70px solid transparent;
+  border-left: 72px solid transparent;
+  border-right: 72px solid transparent;
   border-bottom: 36px solid #866a3c;
-  -webkit-transform: translate3d(58rem, 2.7rem, 44.2rem) rotateY(90deg);
-          transform: translate3d(58rem, 2.7rem, 44.2rem) rotateY(90deg);
+  -webkit-transform: translate3d(58rem, 2.7rem, 44.35rem) rotateY(90deg);
+          transform: translate3d(58rem, 2.7rem, 44.35rem) rotateY(90deg);
 }
 
 .porch [class*='bar'] {
@@ -504,7 +504,7 @@ article.scene {
 
 .staircase .vertical-step::after {
   width: 6.2rem;
-  height: 0.93rem;
+  height: 1rem;
   content: '';
   position: absolute;
   top: 48px;
@@ -547,7 +547,7 @@ article.scene {
 
 .staircase .back-cover {
   width: 6.25rem;
-  height: 3.13rem;
+  height: 3rem;
   content: '';
   position: absolute;
   -webkit-transform: translate3D(40rem, 20.6rem, 25rem) rotateY(-5deg);
@@ -559,36 +559,36 @@ article.scene {
   height: 3.55rem;
   content: '';
   position: absolute;
-  -webkit-transform: translate3D(39.2rem, 22.2rem, 27rem) rotateX(82deg) rotateY(1deg) skewX(-25deg);
-          transform: translate3D(39.2rem, 22.2rem, 27rem) rotateX(82deg) rotateY(1deg) skewX(-25deg);
+  -webkit-transform: translate3D(39.2rem, 22.2rem, 27rem) rotateX(80deg) rotateY(1deg) skewX(-23deg);
+          transform: translate3D(39.2rem, 22.2rem, 27rem) rotateX(80deg) rotateY(1deg) skewX(-23deg);
 }
 
 .staircase .side-cover {
   width: 1.25rem;
-  height: 2.56rem;
+  height: 2.53rem;
   background: #674e2e;
-  -webkit-transform: translate3D(56.5rem, 16.68rem, 38rem) rotateY(90deg);
-          transform: translate3D(56.5rem, 16.68rem, 38rem) rotateY(90deg);
+  -webkit-transform: translate3D(56.6rem, 16.68rem, 38rem) rotateY(90deg);
+          transform: translate3D(56.6rem, 16.68rem, 38rem) rotateY(90deg);
 }
 
 .staircase .side-cover::before {
-  width: 1.63rem;
-  height: 1.71rem;
+  width: 1.72rem;
+  height: 1.66rem;
   background: #674e2e;
   content: '';
   position: absolute;
-  -webkit-transform: translate3D(-1.6rem, 0.8rem, 0rem);
-          transform: translate3D(-1.6rem, 0.8rem, 0rem);
+  -webkit-transform: translate3D(-1.7rem, 0.8rem, 0rem);
+          transform: translate3D(-1.7rem, 0.8rem, 0rem);
 }
 
 .staircase .side-cover::after {
   width: 1.31rem;
-  height: 0.85rem;
+  height: 0.9rem;
   background: #674e2e;
   content: '';
   position: absolute;
-  -webkit-transform: translate3D(-2.9rem, 1.6rem, 0rem);
-          transform: translate3D(-2.9rem, 1.6rem, 0rem);
+  -webkit-transform: translate3D(-3rem, 1.6rem, 0rem);
+          transform: translate3D(-3rem, 1.6rem, 0rem);
 }
 
 @-webkit-keyframes stairs {
@@ -728,8 +728,8 @@ article.scene {
   width: 1.7rem;
   height: 0.7rem;
   background-color: #806139;
-  -webkit-transform: translate3D(53.5rem, 13.5rem, 39.2rem) rotateZ(-3deg);
-          transform: translate3D(53.5rem, 13.5rem, 39.2rem) rotateZ(-3deg);
+  -webkit-transform: translate3D(53.5rem, 13.5rem, 39.2rem);
+          transform: translate3D(53.5rem, 13.5rem, 39.2rem);
 }
 
 .veranda .plank3 {

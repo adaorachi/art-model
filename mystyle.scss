@@ -105,12 +105,12 @@ article.scene {
   }
 
   .right {
-    @include sizing(22, 61.3, 2.9, false, true);
+    @include sizing(22, 61.3, 3, false, true);
     transform: translate3D(-38.4rem, 29.1rem, -38.4rem);
   }
 
   .back {
-    @include sizing(22, 53, 2.9, false, true);
+    @include sizing(22, 53, 3, false, true);
     transform: translate3D(-66rem, 29.3rem, -12.8rem) rotateY(90deg);
   }
 
@@ -119,7 +119,7 @@ article.scene {
     transform: translate3d(32.1rem, 21.2rem, 9rem) rotateY(90deg);
 
     &::before {
-      @include sizing(5, 11, 3, true);
+      @include sizing(5, 11.1, 3, true);
       transform: translate3D(17.2rem, 7.1rem, -25.4rem) rotateY(90deg);
     }
 
@@ -340,8 +340,8 @@ article.scene {
   }
   
   .front {
-    @include front_rear_roof(70, 70, 36, #866a3c);
-    transform: translate3d(58rem, 2.7rem, 44.2rem) rotateY(90deg);
+    @include front_rear_roof(72, 72, 36, #866a3c);
+    transform: translate3d(58rem, 2.7rem, 44.35rem) rotateY(90deg);
   }
   
   [class*='bar'] {
@@ -390,7 +390,7 @@ article.scene {
     }
 
     &::after {
-      @include sizing(0, 6.2, 0.93, true, false);
+      @include sizing(0, 6.2, 1, true, false);
       top: 48px;
       left: -65px;
     }
@@ -423,27 +423,27 @@ article.scene {
   }
   
   .back-cover {
-    @include sizing(0, 6.25, 3.13, true, false);
+    @include sizing(0, 6.25, 3, true, false);
     transform: translate3D(40rem, 20.6rem, 25rem) rotateY(-5deg);
   }
   
   .bottom-cover {
     @include sizing(0, 6.25, 3.55, true, false);
-    transform: translate3D(39.2rem, 22.2rem, 27rem) rotateX(82deg) rotateY(1deg) skewX(-25deg);
+    transform: translate3D(39.2rem, 22.2rem, 27rem) rotateX(80deg) rotateY(1deg) skewX(-23deg);
   }
   
   .side-cover {
-    @include sizing(15, 1.25, 2.56, false, true);
-    transform: translate3D(56.5rem, 16.68rem, 38rem) rotateY(90deg);
+    @include sizing(15, 1.25, 2.53, false, true);
+    transform: translate3D(56.6rem, 16.68rem, 38rem) rotateY(90deg);
 
     &::before {
-      @include sizing(15, 1.63, 1.71, true, true);
-      transform: translate3D(-1.6rem, 0.8rem, 0rem);
+      @include sizing(15, 1.72, 1.66, true, true);
+      transform: translate3D(-1.7rem, 0.8rem, 0rem);
     }
 
     &::after {
-      @include sizing(15, 1.31, 0.85, true, true);
-      transform: translate3D(-2.9rem, 1.6rem, 0rem);
+      @include sizing(15, 1.31, 0.9, true, true);
+      transform: translate3D(-3rem, 1.6rem, 0rem);
     }
   }
   animation: stairs 1s 2.5s;
@@ -531,7 +531,7 @@ article.scene {
 
   .plank2 {
     @include veranda_prop(1.7, 0.7, #806139, 0, false);
-    transform: translate3D(53.5rem, 13.5rem, 39.2rem) rotateZ(-3deg);
+    transform: translate3D(53.5rem, 13.5rem, 39.2rem);
   }
 
   .plank3 {
