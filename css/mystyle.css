@@ -995,4 +995,10 @@ article.scene {
             transform: translate3d(1200px, 179px, 860px) rotateY(89deg);
   }
 }
+
+@media only screen and (max-width: 1200px) {
+  body {
+    width: 1200px;
+  }
+}
 /*# sourceMappingURL=mystyle.css.map */
