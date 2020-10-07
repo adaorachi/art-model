@@ -9,11 +9,11 @@ This is a 3D art model built with CSS3
 * [Contact](#contact)
 
 ## General info
-This project was undertaken to build a 3D model with HTML and CSS. In this project, I made huge use of the transform, perspective and gradient CSS properties to achieve a realistic art creation.
+This project was undertaken to build a 3D model with HTML and CSS. In this project, I made huge use of the transform, perspective, and gradient CSS properties to achieve a realistic art creation.
 
 ## Setup & Live Preview
-This project is built with the basic web page structures and styling. It is pretty simple to setup. All you have to do is to clone the project into your local machine.<br>
-These are preview of sites cloned with this framework - <br>
+This project is built with basic web page structures and styling. It is pretty simple to set up. All you have to do is to clone the project into your local machine.<br>
+These are the preview of sites cloned with this framework - <br>
 <a href="https://raw.githack.com/adaorachi/art-model/master/index.html">3D Art Model</a><br>
 
 ## Inspiration
